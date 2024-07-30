@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mon Panier</title>
+</head>
+<body>
+    <h1>Mon Panier</h1>
+    <ul>
+        {% for item in panier_produits %}
+            <li>
+                {{ item.produit.nom }} - {{ item.quantite }} x {{ item.produit.prix }} €
+                <a href="{% url 'supprimer_du_panier' item.produit.id %}">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'liste_produits' %}">Retour aux Produits</a>
+</body>
+</html>

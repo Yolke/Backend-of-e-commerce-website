@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier un Produit</title>
+</head>
+<body>
+    <h1>Modifier le Produit {{ produit.nom }}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ formulaire.as_p }}
+        <button type="submit">Modifier</button>
+    </form>
+</body>
+</html>

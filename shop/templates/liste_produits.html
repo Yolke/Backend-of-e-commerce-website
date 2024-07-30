@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Produits</title>
+</head>
+<body>
+    <h1>Produits</h1>
+    <ul>
+        {% for produit in produits %}
+            <li>
+                {{ produit.nom }} - {{ produit.prix }} €
+                <a href="{% url 'modifier_produit' produit.id %}">Modifier</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'ajouter_produit' %}">Ajouter un Nouveau Produit</a>
+</body>
+</html>
