@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Produit, Categorie, Panier, PanierProduit, Commande
 from .forms import FormulaireProduit, FormulaireCategorie, FormulaireCommande
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login as auth_login
 
 def liste_produits(request):
     produits = Produit.objects.all()
@@ -15,7 +17,7 @@ def ajouter_produit(request):
             return redirect('liste_produits')
     else:
         formulaire = FormulaireProduit()
-    return render(request, 'shop/ajouter_produit.html', {'formulaire': formzulaire})
+    return render(request, 'shop/ajouter_produit.html', {'formulaire': formulaire})
 
 def modifier_produit(request, produit_id):
     produit = get_object_or_404(Produit, id=produit_id)
@@ -72,3 +74,15 @@ def passer_commande(request):
 
 def confirmation_commande(request):
     return render(request, 'shop/confirmation_commande.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            auth_login(request, user)
+            return redirect('home')  # Redirige vers la page d'accueil ou une autre page après l'inscription
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
