@@ -28,5 +28,7 @@ MyShop est une application web Django pour gérer une boutique en ligne. Ce proj
     - **views.py** : Les vues de la boutique.
     - **admin.py** : L'interface d'administration de la boutique.
     - **templates/** : Les modèles HTML.
+      - **shop** : Contient les modèle lié au shop
+      - **registration** : Contient les modèle lié à la connexion/inscription
     - **static/** : Les fichiers statiques (CSS, JS, images).
 
